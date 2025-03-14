@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface CustomerService {
 
     // Create Customer
-    CustomerEntity createCustomer(CustomerEntity customer0);
+   CustomerEntity createCustomer(CustomerEntity customer0);
 
     // Get customer by ID
     Optional<CustomerEntity> getCustomerById(Long id);
@@ -19,5 +19,5 @@ public interface CustomerService {
    CustomerEntity updateCustomer(Long id,CustomerEntity updatedCustomer);
 
     // Delete customer
-    void deleteCustomer(Long id);
+   void deleteCustomer(Long id);
 }

@@ -19,8 +19,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     //add user 
     @Override
-    public CustomerEntity createCustomer(CustomerEntity customer) {
-        return customerRepository.save(customer);
+    public CustomerEntity createCustomer(CustomerEntity customer0) {
+        return customerRepository.save(customer0);
     }
      // get user by id
     @Override
@@ -40,10 +40,10 @@ public class CustomerServiceImpl implements CustomerService {
         customerRepository.deleteById(id);
     }
     //update
-@Override
-public CustomerEntity updateCustomer(Long id, CustomerEntity updatedCustomer) {
-	 CustomerEntity existingCustomer = customerRepository.findById(id)
-             .orElseThrow(() -> new RuntimeException("Customer not found: " + id));
+     @Override
+    public CustomerEntity updateCustomer(Long id, CustomerEntity updatedCustomer) {
+	 CustomerEntity existingCustomer = customerRepository.findById(id).orElseThrow(() 
+			 -> new RuntimeException("Customer not found: " + id));
 	 existingCustomer.setFirstName(updatedCustomer.getFirstName());
 	 existingCustomer.setLastName(updatedCustomer.getLastName());
 	 existingCustomer.setEmail(updatedCustomer.getEmail());
