@@ -12,14 +12,11 @@ public interface CustomerService {
     // Get customer by ID
     Optional<CustomerEntity> getCustomerById(Long id);
 
-    // Get customer by email
-    Optional<CustomerEntity> getCustomerByEmail(String email);
-
     // Get all customers
     List<CustomerEntity> getAllCustomers();
 
     // Update customer by ID
-    Optional<CustomerEntity> updateCustomer(Long id, String firstName,String lastName,String email,String mobileNumber,CustomerEntity updatedCustomer);
+   CustomerEntity updateCustomer(Long id,CustomerEntity updatedCustomer);
 
     // Delete customer
     void deleteCustomer(Long id);

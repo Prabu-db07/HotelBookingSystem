@@ -9,54 +9,49 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
+
 @Service
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
     private  CustomerRepossitory customerRepository;
 
+    //add user 
     @Override
     public CustomerEntity createCustomer(CustomerEntity customer) {
         return customerRepository.save(customer);
     }
-
+     // get user by id
     @Override
     public Optional<CustomerEntity> getCustomerById(Long id) {
         return customerRepository.findById(id);
     }
-
-    @Override
-    public Optional<CustomerEntity> getCustomerByEmail(String email) {
-        return customerRepository.findByEmail(email);
-    }
-
+  
+      // get all user
     @Override
     public List<CustomerEntity> getAllCustomers() {
         return customerRepository.findAll();
     }
-
-//    @Override
-//    public Optional<CustomerEntity> updateCustomer(Long id, String firstName, String lastName, String email, String mobileNumber, CustomerEntity updatedCustomer) {
-//        return customerRepository.findById(id).map(existingCustomer -> {
-//            existingCustomer.setFirstName(firstName);
-//            existingCustomer.setLastName(lastName);
-//            existingCustomer.setEmail(email);
-//            existingCustomer.setMobileNumber(mobileNumber);
-//            existingCustomer.setAge(updatedCustomer.getAge());
-//            existingCustomer.setGender(updatedCustomer.getGender());
-//            return customerRepository.save(existingCustomer);
-//        });
-//    }
-
+    
+  // delete user
     @Override
     public void deleteCustomer(Long id) {
         customerRepository.deleteById(id);
     }
+    //update
+@Override
+public CustomerEntity updateCustomer(Long id, CustomerEntity updatedCustomer) {
+	 CustomerEntity existingCustomer = customerRepository.findById(id)
+             .orElseThrow(() -> new RuntimeException("Customer not found: " + id));
+	 existingCustomer.setFirstName(updatedCustomer.getFirstName());
+	 existingCustomer.setLastName(updatedCustomer.getLastName());
+	 existingCustomer.setEmail(updatedCustomer.getEmail());
+	 existingCustomer.setMobileNumber(updatedCustomer.getMobileNumber());
+	 existingCustomer.setAge(updatedCustomer.getAge());
+	 return customerRepository.save(existingCustomer);
+}
 
-	@Override
-	public Optional<CustomerEntity> updateCustomer(Long id, String firstName, String lastName, String email,
-			String mobileNumber, CustomerEntity updatedCustomer) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
+
+	
 }
